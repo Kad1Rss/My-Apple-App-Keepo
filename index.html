@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0, viewport-fit=cover" />
+    <meta name="theme-color" content="#F5F5F7" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#151517" media="(prefers-color-scheme: dark)" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Keepo" />
+    <title>Keepo</title>
+    <meta name="description" content="Minimalist Link Saver" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      :root {
+        /* LIGHT MODE (Daylight) */
+        --c-bg: #F5F5F7;           /* Premium Off-White */
+        --c-card: #FFFFFF;         /* Pure White */
+        --c-text-primary: #1C1C1E; /* Soft Black */
+        --c-text-secondary: #8E8E93; /* System Gray */
+        --c-accent: #007AFF;       /* Apple Blue */
+        --c-border: rgba(0, 0, 0, 0.04); /* Barely there border */
+        --c-danger: #FF3B30;
+        --c-glass: rgba(245, 245, 247, 0.92);
+        --s-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+        --s-shadow-hover: 0 12px 32px rgba(0, 0, 0, 0.08);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          /* DARK MODE (Midnight) */
+          --c-bg: #000000;           /* True Black for OLED */
+          --c-card: #1C1C1E;         /* Secondary System Background */
+          --c-text-primary: #FFFFFF;
+          --c-text-secondary: #98989D;
+          --c-accent: #0A84FF;
+          --c-border: rgba(255, 255, 255, 0.08);
+          --c-danger: #FF453A;
+          --c-glass: rgba(28, 28, 30, 0.92);
+          --s-shadow: 0 0 0 transparent; /* No shadows in dark mode usually */
+          --s-shadow-hover: 0 0 0 transparent;
+        }
+      }
+
+      body {
+        -webkit-tap-highlight-color: transparent;
+        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
+        background-color: var(--c-bg);
+        color: var(--c-text-primary);
+        transition: background-color 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+      }
+
+      /* Scrollbar Hiding */
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      
+      /* Animations */
+      @keyframes slideUp { 
+        from { transform: translateY(100%); opacity: 0.5; } 
+        to { transform: translateY(0); opacity: 1; } 
+      }
+      .animate-slide-up { animation: slideUp 0.5s cubic-bezier(0.19, 1, 0.22, 1) forwards; }
+      
+      @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+      .animate-fade-in { animation: fadeIn 0.4s ease-out forwards; }
+
+      /* Inputs */
+      input, textarea { appearance: none; -webkit-appearance: none; border-radius: 0; }
+      
+      /* Utilities */
+      .glass-blur {
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        background-color: var(--c-glass);
+      }
+      .font-display {
+        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+        letter-spacing: -0.022em; /* Tighter for display */
+      }
+    </style>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              sys: {
+                bg: 'var(--c-bg)',
+                card: 'var(--c-card)',
+                text: 'var(--c-text-primary)',
+                subtext: 'var(--c-text-secondary)',
+                accent: 'var(--c-accent)',
+                border: 'var(--c-border)',
+                danger: 'var(--c-danger)',
+              }
+            },
+            boxShadow: {
+              'premium': 'var(--s-shadow)',
+              'premium-hover': 'var(--s-shadow-hover)',
+            }
+          }
+        }
+      }
+    </script>
+    <script type="importmap">
+    {
+      "imports": {
+        "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+        "react/": "https://esm.sh/react@^19.2.3/",
+        "react": "https://esm.sh/react@^19.2.3"
+      }
+    }
+    </script>
+  <link rel="stylesheet" href="/index.css">
+</head>
+  <body class="h-screen w-screen overflow-hidden pb-safe">
+    <div id="root" class="h-full w-full"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
